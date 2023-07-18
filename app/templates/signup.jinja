@@ -1,0 +1,26 @@
+{% extends 'base.jinja' %}
+{% block content %}
+{{ form.hidden_tag() }}
+  <div class="width-100 my-4">
+    <div class="mx-auto min-width-form">
+      <h3>Sign Up</h3>
+      <p>
+          {{ form.username.label }}<br>
+          {{ form.username (size=32) }}
+      </p>
+      <p>
+          {{ form.email.label }}<br>
+          {{ form.email (size=32) }}
+      </p>
+      <p>
+          {{ form.password.label }}<br>
+          {{ form.password (size=32) }}
+      </p>
+      <p>
+          {{ form.password2.label }}<br>
+          {{ form.password2 (size=32) }}
+      </p>
+      <p> {{ form.submit() }} </p>
+    </div>
+  </div> 
+{% endblock content %}

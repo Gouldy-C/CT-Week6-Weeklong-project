@@ -28,7 +28,7 @@ class Characters(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"), nullable=False)
     character_name = db.Column(db.String(75), nullable=False)
     race = db.Column(db.String(75))
-    race = db.Column(db.String(75))
+    character_class = db.Column(db.String(75))
     
     def commit(self):
         db.session.add(self)

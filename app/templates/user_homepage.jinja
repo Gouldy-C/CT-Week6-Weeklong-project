@@ -2,22 +2,23 @@
 {% block content %}
   <h3>{{ username }} Home Page</h3>
   <a href="{{ url_for('user_stuff.character_creator') }}">
-    <button class="btn btn-outline-success mx-1 my-2 fw-bold">Create A Character</button>
+    <button class="btn btn-outline-success mx-2 my-2 fw-bold">Create A Character</button>
   </a>
-
-  {% for character in characters %}
-    <div class="card my-2" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">{{ character.character_name.title() }}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">{{ character.race.title() }}</h6>
-        <h6 class="card-subtitle mb-2 text-body-secondary">{{ character.character_class.title() }}</h6>
-        <a href="{{ url_for('user_stuff.home') }}">
-          <button class="btn btn-outline-success mx-1 my-1 fw-bold">Edit</button>
-        </a>
-        <a href="{{ url_for('user_stuff.home') }}">
-          <button class="btn btn-outline-danger mx-1 my-1 fw-bold">Delete Character</button>
-        </a>
+  <div class="grid-container-fill">
+    {% for character in characters %}
+      <div class="card m-2" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{ character.character_name.title() }}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{ character.race.title() }}</h6>
+          <h6 class="card-subtitle mb-2 text-body-secondary">{{ character.character_class.title() }}</h6>
+          <a href="{{ url_for('user_stuff.home') }}">
+            <button class="btn btn-outline-success mx-1 my-1 fw-bold">Edit</button>
+          </a>
+          <a href="{{ url_for('user_stuff.home') }}">
+            <button class="btn btn-outline-danger mx-1 my-1 fw-bold">Delete Character</button>
+          </a>
+        </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 {% endblock content %}

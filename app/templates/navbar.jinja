@@ -1,35 +1,57 @@
 <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="./index">D&D Helper</a>
+        <a class="navbar-brand" href="{{ url_for('main.home') }}">D&D Helper</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto align-middle">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Placeholder</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Placeholder
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Placeholder</a></li>
-                <li><a class="dropdown-item" href="#">Placeholder</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Placeholder</a></li>
-              </ul>
-            </li>
+            {% if current_user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{ url_for('user_stuff.home') }}">User Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Characters
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{{ url_for('user_stuff.home') }}">My Characters</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{{ url_for('user_stuff.character_creator') }}">Character Creation</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Account
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{{ url_for('main.home') }}">Settings</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
+                </ul>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{ url_for('main.home') }}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.home') }}">About</a>
+              </li>
+            {% endif %}
           </ul>
-          <a href="/sign-up">
+          {% if current_user.is_authenticated %}
+          <p class="my-auto mx-2 text-light">{{ current_user.username }}</p>
+          <a href="{{ url_for('auth.logout') }}">
+          <button class="btn btn-outline-success mx-1 my-0 fw-bold">Logout</button>
+          </a>
+          {% else %}
+          <a href="{{ url_for('auth.signup') }}">
           <button class="btn btn-outline-success mx-1 my-0 fw-bold">Sign up</button>
           </a>
-          <a href="/sign-in">
+          <a href="{{ url_for('auth.signin') }}">
           <button class="btn btn-outline-success mx-1 my-0 fw-bold">Login</button>
           </a>
+          {% endif %}
         </div>
       </div>
     </nav>

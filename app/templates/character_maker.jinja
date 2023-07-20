@@ -1,0 +1,27 @@
+{% extends 'base.jinja' %}
+{% block content %}
+  <h3>{{ username }} Character Creation Page</h3>
+  <form action="" method="POST" novalidate>
+      {{ form.hidden_tag() }}
+        <p>
+          {{ form.character_name.label }}<br>
+          {{ form.character_name (size=32) }}
+          {% if form.character_name.errors %}
+            <ul class="errors">
+              {% for error in form.character_name.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </p>
+        <p>
+          {{ form.race.label }}<br>
+          {{ form.race (size=32) }}
+        </p>
+        <p>
+          {{ form.character_class.label }}<br>
+          {{ form.character_class (size=32) }}
+        </p>
+        <p> {{ form.submit() }} </p>
+      </form>
+{% endblock content %}

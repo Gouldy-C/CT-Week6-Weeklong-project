@@ -23,11 +23,3 @@ class SignUpForm(FlaskForm):
                             validators=[DataRequired(),
                                         EqualTo('password', message='Your passwords did not match, please try again.')])
     submit = SubmitField('Submit')
-
-    
-
-class CaracterCreation(FlaskForm):
-    character_name= StringField('Character Name', validators=[DataRequired()])
-    race = StringField('Character Race')
-    character_class = PasswordField('Password')
-    submit = SubmitField('Submit')

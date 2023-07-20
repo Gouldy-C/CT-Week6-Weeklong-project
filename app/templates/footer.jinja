@@ -5,17 +5,17 @@
             <div class="row text-center d-flex justify-content-center pt-4">
               <div class="col-md-2">
                 <h6 class="text-uppercase font-weight-bold">
-                  <a href="/" class="text-white">About us</a>
+                  <a href="{{ url_for('main.home') }}" class="text-white">About us</a>
                 </h6>
               </div>
               <div class="col-md-2">
                 <h6 class="text-uppercase font-weight-bold">
-                  <a href="/" class="text-white">Help</a>
+                  <a href="{{ url_for('main.home') }}" class="text-white">Help</a>
                 </h6>
               </div>
               <div class="col-md-2">
                 <h6 class="text-uppercase font-weight-bold">
-                  <a href="/" class="text-white">Contact</a>
+                  <a href="{{ url_for('main.home') }}" class="text-white">Contact</a>
                 </h6>
               </div>
             </div>
@@ -59,7 +59,7 @@
           class="text-center p-3"
           style="background-color: rgba(0, 0, 0, 0.2)">
           ©
-          <a class="text-white" href="#">
+          <a class="text-white" href="{{ url_for('main.home') }}">
           D&DHelper.com</a>
         </div>
       </footer>

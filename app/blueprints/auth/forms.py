@@ -7,7 +7,7 @@ class SignInForm(FlaskForm):
                             validators=[DataRequired(), Email()])
     password = PasswordField('Password',
                             validators=[DataRequired(),
-                                        Regexp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", message='Must contain at least one of each of the following and at least 8 characters long.<br>A-Z<br>a-z<br>0-9<br>#?!@$%^&*-')])
+                                        Regexp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", message='Must contain at least one of each of the following and be at least 8 characters long.<br>A-Z<br>a-z<br>0-9<br>#?!@$%^&*-')])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Submit')
 

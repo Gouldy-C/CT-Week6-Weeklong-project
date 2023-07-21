@@ -1,12 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, SelectField, SubmitField
 from wtforms.validators import DataRequired
 
 
 class CharacterCreation(FlaskForm):
+    races = ['Dwarf', 'Elf', 'Halfling', 'Human', 'Dragonborn', 'Gnome', 'Half-Elf', 'Half-Orc', 'Tiefling']
+    classes = ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard', 'Artificer', 'Blood Hunter']
     character_name= StringField('Character Name', validators=[DataRequired()])
-    race = StringField('Character Race')
-    character_class = StringField('Character Class')
+    race = SelectField('Character Race', choices=races)
+    character_class = SelectField('Character Class', choices=classes)
     submit = SubmitField('Submit')
 
 

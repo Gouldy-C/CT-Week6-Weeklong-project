@@ -23,6 +23,23 @@ class User(UserMixin, db.Model):
     def commit(self):
         db.session.add(self)
         db.session.commit()
+    
+    def from_dict(self, user_dict):
+        for k, v in user_dict.items():
+            if k == 'email':
+                setattr(self, k, v.lower())
+            else:
+                setattr(self, k, v)
+    
+    def to_dict(self):
+        return {
+            'username' : self.username,
+            'email' : self.email,
+            'characters' : [{'character_id': character.character_id,
+                        'character_name': character.character_name,
+                        'race' : character.race,
+                        'character_class': character.character_class} for character in self.characters]
+        }
 
 
 class Characters(db.Model):
@@ -36,4 +53,8 @@ class Characters(db.Model):
     
     def commit(self):
         db.session.add(self)
+        db.session.commit()
+    
+    def delete(self):
+        db.session.delete(self)
         db.session.commit()
